@@ -1,10 +1,7 @@
 from fastapi import FastAPI
+from fastapi.responses import HTML
 
 app = FastAPI()
-
-@app.get("/")
-def home():
-    return{"Hello": "Test"}
 
 posts: list[dict] = [
     {
@@ -22,6 +19,10 @@ posts: list[dict] = [
         "date_posted": "April 21, 2025",
     },
 ]
+
+@app.get("/", response_class=HTMLResponse)
+def home():
+    return f"<h1>{posts[0]['author']}<h1/>"
 
 # api endpoint
 @app.get("/api/posts")
