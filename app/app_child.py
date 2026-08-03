@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+ReyApp = FastAPI()
 
-@app.get("/hello_world")
+@ReyApp.get("/hello_world")
 def hello_world():
     return {"message": "Hello World, hello Rey"}
 
