@@ -740,10 +740,14 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
+    { name = "python-dotenv" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "fastapi", extras = ["standard"], specifier = ">=0.141.0" }]
+requires-dist = [
+    { name = "fastapi", extras = ["standard"], specifier = ">=0.141.0" },
+    { name = "python-dotenv", specifier = ">=1.2.2" },
+]
 
 [[package]]
 name = "starlette"
