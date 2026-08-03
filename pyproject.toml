@@ -12,6 +12,7 @@ dependencies = [
     "fastapi[standard]>=0.141.0",
     "imagekitio>=5.8.0",
     "python-dotenv>=1.2.2",
+    "uvicorn[standard]>=0.52.0",
 ]
 
 [project.scripts]
