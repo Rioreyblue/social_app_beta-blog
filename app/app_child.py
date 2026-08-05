@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+
 
 ReyApp = FastAPI()
 
@@ -17,5 +18,11 @@ text_posts = {
 
 @ReyApp.get("/posts")
 def get_all_posts():
-    return text_post
+    return text_posts
 
+@ReyApp.get("/posts/{id}")
+def get_post(id: int):
+    if id not in text_posts:
+        raise HTTException(status_code=404,detail="Post not Found")
+
+    return text_posts.get(id)
