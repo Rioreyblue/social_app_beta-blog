@@ -23,6 +23,6 @@ def get_all_posts():
 @ReyApp.get("/posts/{id}")
 def get_post(id: int):
     if id not in text_posts:
-        raise HTTException(status_code=404,detail="Post not Found")
+        raise HTTPException(status_code=404,detail="Post not Found")
 
     return text_posts.get(id)
