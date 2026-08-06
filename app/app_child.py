@@ -60,7 +60,9 @@ text_posts = {
 # }
 
 @ReyApp.get("/posts")
-def get_all_posts(limit: int = 10):
+def get_all_posts(limit: int = None):
+    if limit:
+        return text_posts[:limit]
     return text_posts
 
 @ReyApp.get("/posts/{id}")
