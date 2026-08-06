@@ -60,7 +60,7 @@ text_posts = {
 # }
 
 @ReyApp.get("/posts")
-def get_all_posts():
+def get_all_posts(limit: int = 10):
     return text_posts
 
 @ReyApp.get("/posts/{id}")
