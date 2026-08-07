@@ -79,3 +79,7 @@ def get_post(id: int):
 #         raise HTTPException(status_code=404,detail="Post not Found")
 
 #     return text_posts.get[post_id]
+
+@ReyApp.post("/posts")
+def create_post():
+    pass
