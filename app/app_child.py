@@ -81,5 +81,5 @@ def get_post(id: int):
 #     return text_posts.get[post_id]
 
 @ReyApp.post("/posts")
-def create_post():
-    pass
+def create_post(post: PostCreate):
+    text_posts[max(text_posts.keys())+1] = {"title": post.title, "content": post.content}
