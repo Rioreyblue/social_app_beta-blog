@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-
+from app.schemas import PostCreate
 
 ReyApp = FastAPI()
 
