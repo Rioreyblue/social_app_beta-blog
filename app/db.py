@@ -18,3 +18,5 @@ class Post(DeclarativeBase):
     file_type = Column(String, nullable=False)
     file_name = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
+    
+    # //
