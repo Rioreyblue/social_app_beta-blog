@@ -19,4 +19,5 @@ class Post(DeclarativeBase):
     file_name = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
     
-    # //
+engine = create_async_engine(DATABASE_URL)
+async_sessionmaker = async_sessionmaker(engine, expire_on_commit=False)
