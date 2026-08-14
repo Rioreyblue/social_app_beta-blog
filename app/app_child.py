@@ -4,9 +4,12 @@ from app.db import Post, create_db_and_tables, get_async_session
 from sqlalchemy.ext.asyncio import AsyncnSession
 from contextlib import asynccontextmanager
 
+@asynccontextmanager
+async def lifespan(app: FastAPI): 
+    await create_db_and_tables()
+    yield
 
-
-ReyApp = FastAPI()
+ReyApp = FastAPI(lifespan=lifespan)
 
 text_posts = {
     1: {"title": "Debugging Tip", "content": "Print statements are great, but learning to use a proper debugger saves hours."},
