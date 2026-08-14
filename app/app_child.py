@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, File, UploadFile, Form, Depends
 from app.schemas import PostCreate, PostResponse
 from app.db import Post, create_db_and_tables, get_async_session
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -11,3 +11,11 @@ async def lifespan(app: FastAPI):
 
 ReyApp = FastAPI(lifespan=lifespan)
 
+@ReyApp.post("/upload")
+async def upload_file(
+    file: UploadFile = File(...),
+    caption: str = Form(""),
+    session: AsyncSession = Depends(get_async_session)
+
+):
+    pass
