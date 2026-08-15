@@ -24,3 +24,5 @@ async def upload_file(
         file_type="photo",
         file_name="dummy name"
     )
+    session.add(post)
+    await session.commit()
