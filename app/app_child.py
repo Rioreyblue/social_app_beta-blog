@@ -18,4 +18,9 @@ async def upload_file(
     session: AsyncSession = Depends(get_async_session)
 
 ):
-    pass
+    post = Post(
+        caption=caption,
+        url="dummy url",
+        file_type="photo",
+        file_name="dummy name"
+    )
