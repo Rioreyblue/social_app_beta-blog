@@ -28,3 +28,9 @@ async def upload_file(
     await session.commit()
     await session.refresh(post)
     return post
+
+@ReyApp.get("/feed")
+async def get_feed(
+    session: AsyncSession = Depends(get_async_session)
+):
+    result = await session.execute(select(Post).order_by(Post.created_at.desc()))
