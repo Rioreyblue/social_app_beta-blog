@@ -35,3 +35,6 @@ async def get_feed(
 ):
     result = await session.execute(select(Post).order_by(Post.created_at.desc()))
     Post = [row[0] for row in result.all()]
+    
+    posts_data = []
+    
