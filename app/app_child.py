@@ -7,6 +7,11 @@ from sqlalchemy import select
 from app.images import imagekit
 from imagekitio.models.UploadFileRequestOptions import UploadFileRequestOptions
 
+import shutil
+import os
+import uuid
+import tempfile
+
 @asynccontextmanager
 async def lifespan(app: FastAPI): 
     await create_db_and_tables()
