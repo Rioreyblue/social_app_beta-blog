@@ -22,10 +22,18 @@ ReyApp = FastAPI(lifespan=lifespan)
 @ReyApp.post("/upload")
 async def upload_file(
     file: UploadFile = File(...),
-    caption: str = Form(""),
+    caption: str = Form(""),    
     session: AsyncSession = Depends(get_async_session)
-
 ):
+    temp_file_path =  none
+    
+    try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splittext(file.filename)[1]) as temp_file:
+            temp_file_path = temp_file.name
+            shutil.copyfileobj(file.file, temp_file)
+        
+        
+    
     post = Post(
         caption=caption,
         url="dummy url",
