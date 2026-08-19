@@ -27,11 +27,13 @@ async def upload_file(
 ):
     temp_file_path =  none
     
+    #Region "Create Temporary file"
     try:
         with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splittext(file.filename)[1]) as temp_file:
             temp_file_path = temp_file.name
             shutil.copyfileobj(file.file, temp_file)
         
+        # uploaded
         upload_result = imagekit.upload_file(
             file=open(temp_file_path, "rb"),
             file_name=file.filename,
@@ -40,15 +42,15 @@ async def upload_file(
                 tags=["backend-upload"]
             )
         )
+        #End Region
         
+        #proceed if successful
         if upload_result.response.http_status_code == 200:
-            
-    
             post = Post(
                 caption=caption,
-                url="dummy url",
-                file_type="photo",
-                file_name="dummy name"
+                url="upload_result.url",
+                file_type="video" if file.content_type.startswith("video/") else "image",
+                file_name="upload_result.name"
             )
             session.add(post)
             await session.commit()
@@ -68,7 +70,6 @@ async def get_feed(
 ):
     result = await session.execute(select(Post).order_by(Post.created_at.desc()))
     Post = [row[0] for row in result.all()]
-    
     posts_data = []
     for post in posts:
         posts_data.append(
