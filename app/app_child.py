@@ -56,7 +56,7 @@ async def upload_file(
             return post 
 
     except Exception as e:
-        pass
+        raise HTTPException(status_code=500, detail=str(e))
     finally:
         if temp_file_path and os.path.exist(temp_file_path):
             os.unlink(temp_file_path)
